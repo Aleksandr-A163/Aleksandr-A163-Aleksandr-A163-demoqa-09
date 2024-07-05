@@ -5,46 +5,55 @@ import java.util.LinkedList;
 
 public class CarDequeExample {
 
-    public static void main(String[] args) {
-        // Создаем экземпляр Deque, используя реализацию LinkedList
-        Deque<String> carDeque = new LinkedList<>();
+    CarDequeExample example = new CarDequeExample();
+    private Deque<String> carDeque;
 
-        // Добавляем элементы (марки автомобилей) в конец очереди
-        carDeque.add("Audi");
-        carDeque.add("BMW");
-        carDeque.add("Mercedes");
-        carDeque.add("Porsche");
-        carDeque.add("Peugeot");
-        carDeque.add("Lada");
-        System.out.println("После добавления элементов: " + carDeque);
 
-        // Поиск элемента в очереди
-        String searchCar = "Mercedes";
-        boolean found = carDeque.contains(searchCar);
-        if (found) {
-            System.out.println(searchCar + " найден в очереди.");
-        } else {
-            System.out.println(searchCar + " не найден в очереди.");
+    public CarDequeExample() {
+        carDeque = new LinkedList<>();
+    }
+
+    // Метод для добавления элементов в конец очереди
+    public void addElements(String... cars) {
+        for (String car : cars) {
+            carDeque.add(car);
         }
+        System.out.println("После добавления элементов: " + carDeque);
+    }
 
-        // Удаляем элемент из начала очереди
+    // Метод для поиска элемента в очереди
+    public void searchElement(String car) {
+        boolean found = carDeque.contains(car);
+        if (found) {
+            System.out.println(car + " найден в очереди.");
+        } else {
+            System.out.println(car + " не найден в очереди.");
+        }
+    }
+
+    // Метод для удаления первого элемента из очереди
+    public void removeFirstElement() {
         String firstCar = carDeque.removeFirst();
         System.out.println("Удален первый элемент: " + firstCar);
         System.out.println("После удаления первого элемента: " + carDeque);
+    }
 
-        // Удаляем элемент из конца очереди
+    // Метод для удаления последнего элемента из очереди
+    public void removeLastElement() {
         String lastCar = carDeque.removeLast();
         System.out.println("Удален последний элемент: " + lastCar);
         System.out.println("После удаления последнего элемента: " + carDeque);
+    }
 
-        // Удаляем определенный элемент
-        String removeCar = "BMW";
-        boolean removed = carDeque.remove(removeCar);
+    // Метод для удаления определенного элемента из очереди
+    public void removeElement(String car) {
+        boolean removed = carDeque.remove(car);
         if (removed) {
-            System.out.println(removeCar + " был удален.");
+            System.out.println(car + " был удален.");
         } else {
-            System.out.println(removeCar + " не был найден.");
+            System.out.println(car + " не был найден.");
         }
         System.out.println("После удаления элемента: " + carDeque);
     }
+
 }

@@ -7,16 +7,6 @@ public class TreeMapExample {
     public static void main(String[] args) {
         TreeMap<String, Integer> treeMap = new TreeMap<>();
 
-        // Добавление элементов в TreeMap
-        addElements(treeMap);
-
-        // Удаление элемента "Two" из TreeMap
-        String keyToRemove = "Two";
-        removeElement(treeMap, keyToRemove);
-
-        // Поиск элемента "Three" в TreeMap
-        String keyToFind = "Three";
-        findElement(treeMap, keyToFind);
     }
 
     // Метод для добавления элементов в TreeMap

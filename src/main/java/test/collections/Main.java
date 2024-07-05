@@ -4,13 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    private List<String> list = new ArrayList<>();
+    private List<String> list;
+    private int integerVariable;
+    private double doubleVariable;
+    private boolean booleanVariable;
+    private String stringVariable;
+
+    public Main() {
+        list = new ArrayList<>();
+        integerVariable = 0;
+        doubleVariable = 0.0;
+        booleanVariable = false;
+        stringVariable = "default";
+    }
 
     // Метод для добавления элементов
     public void addElements(String... elements) {
         for (String element : elements) {
             list.add(element);
         }
+        System.out.println("After adding elements:");
+        printElements();
     }
 
     // Метод для удаления элемента по индексу
@@ -18,16 +32,15 @@ public class Main {
         if (index >= 0 && index < list.size()) {
             list.remove(index);
         }
+        System.out.println("After removing element at index " + index + ":");
+        printElements();
     }
 
     // Метод для поиска элемента
     public boolean findElement(String element) {
-        for (String item : list) {
-            if (item.equals(element)) {
-                return true;
-            }
-        }
-        return false;
+        boolean found = list.contains(element);
+        System.out.println("Element '" + element + "' found: " + found);
+        return found;
     }
 
     // Метод для печати всех элементов
@@ -37,25 +50,52 @@ public class Main {
         }
     }
 
+    // Метод для выполнения всех действий
+    public void executeActions() {
+        // Добавление элементов
+        addElements("January", "February", "March", "April", "May");
+
+        // Поиск элемента
+        findElement("March"); // true
+        findElement("June");  // false
+
+        // Удаление элемента по индексу
+        removeElementByIndex(2); // индекс элемента "March"
+        removeElementByIndex(0); // индекс элемента "January"
+        removeElementByIndex(3); // неверный индекс (вне диапазона)
+    }
+
+    // Методы для установки значений переменных
+    public void setIntegerVariable(int value) {
+        this.integerVariable = value;
+        System.out.println("Integer variable set to: " + integerVariable);
+    }
+
+    public void setDoubleVariable(double value) {
+        this.doubleVariable = value;
+        System.out.println("Double variable set to: " + doubleVariable);
+    }
+
+    public void setBooleanVariable(boolean value) {
+        this.booleanVariable = value;
+        System.out.println("Boolean variable set to: " + booleanVariable);
+    }
+
+    public void setStringVariable(String value) {
+        this.stringVariable = value;
+        System.out.println("String variable set to: " + stringVariable);
+    }
+
     public static void main(String[] args) {
         Main main = new Main();
 
-        // Добавление элементов
-        main.addElements("January", "February", "March", "April", "May");
-        main.printElements();
+        // Установка значений переменных
+        main.setIntegerVariable(42);
+        main.setDoubleVariable(3.14);
+        main.setBooleanVariable(true);
+        main.setStringVariable("example");
 
-        // Поиск элемента
-        System.out.println(main.findElement("March")); // true
-
-        // Удаление элемента по индексу
-        removeElement(main, 2); // индекс элемента "March"
-        removeElement(main, 0); // индекс элемента "January"
-        removeElement(main, 3); // неверный индекс (вне диапазона)
-    }
-
-    // Вспомогательный метод для удаления элемента и печати оставшихся элементов
-    private static void removeElement(Main main, int index) {
-        main.removeElementByIndex(index);
-        main.printElements();
+        // Выполнение действий с элементами списка
+        main.executeActions();
     }
 }
