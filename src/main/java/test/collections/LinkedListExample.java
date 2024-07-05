@@ -1,73 +1,52 @@
 package test.collections;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class LinkedListExample {
-    private LinkedList<Integer> numbers;
 
-    public static void main(String[] args) {
-        LinkedListExample example = new LinkedListExample();
-        example.executeActions();
-    }
+    private LinkedList<Integer> linkedList;
 
+    // Конструктор для инициализации LinkedList и добавления элементов
     public LinkedListExample() {
-        numbers = new LinkedList<>();
+        linkedList = new LinkedList<>();
+        linkedList.add(101);
+        linkedList.add(657);
+        linkedList.add(0);
+        linkedList.add(1);
+        linkedList.add(55);
+        linkedList.add(69);
+        linkedList.add(-65477);
     }
 
-    // Метод для добавления элементов в список
-    public void addElements(int... elements) {
-        for (int element : elements) {
-            numbers.add(element);
-        }
-    }
-
-    // Метод для удаления элементов из списка
-    public void removeElements(int threshold) {
-        ListIterator<Integer> iterator = numbers.listIterator();
-        while (iterator.hasNext()) {
-            int num = iterator.next();
-            if (num > threshold) {
-                iterator.remove();
+    // Метод для поиска элемента в LinkedList (с использованием цикла for)
+    public boolean findElement(int element) {
+        for (Integer num : linkedList) {
+            if (num == element) {
+                return true;
             }
         }
+        return false;
     }
 
-    // Метод для поиска элемента в списке
-    public boolean searchElement(int element) {
-        return numbers.contains(element);
+    // Метод для удаления элемента из LinkedList (с использованием цикла while)
+    public boolean removeElement(int element) {
+        boolean removed = false;
+        while (linkedList.remove(Integer.valueOf(element))) {
+            removed = true;
+        }
+        return removed;
     }
 
-    // Метод для вывода всех элементов списка
+    // Метод для подсчета общего количества элементов в LinkedList
+    public int countElements() {
+        return linkedList.size();
+    }
+
+    // Метод для вывода всех элементов LinkedList (для тестирования)
     public void printElements() {
-        for (int number : numbers) {
-            System.out.println(number);
+        System.out.println("Elements in LinkedList:");
+        for (Integer element : linkedList) {
+            System.out.println(element);
         }
     }
-
-    // Метод для выполнения действий добавления, удаления и поиска
-    public void executeActions() {
-        // Добавление элементов
-        addElements(10, 20, 30);
-        System.out.println("После добавления элементов:");
-        printElements();
-
-        // Удаление элементов
-        System.out.println("Удаление элементов из LinkedList:");
-        removeElements(15);
-        System.out.println("Оставшиеся элементы:");
-        printElements();
-
-        // Поиск элемента
-        int elementToSearch = 20;
-        boolean found = searchElement(elementToSearch);
-        System.out.println("Элемент " + elementToSearch + " найден: " + found);
-
-        // Проверка отсутствующего элемента
-        elementToSearch = 10;
-        found = searchElement(elementToSearch);
-        System.out.println("Элемент " + elementToSearch + " найден: " + found);
-    }
-
-
 }

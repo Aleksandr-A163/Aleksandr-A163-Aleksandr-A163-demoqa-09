@@ -1,65 +1,51 @@
 package test.collections;
 
 import java.util.TreeSet;
-import java.util.Iterator;
 
 public class TreeSetExample {
 
-    private TreeSet<Integer> treeSet;
+    private TreeSet<String> treeSet;
 
+    // Конструктор для инициализации TreeSet и добавления элементов
     public TreeSetExample() {
         treeSet = new TreeSet<>();
+        treeSet.add("AAA");
+        treeSet.add("AA");
+        treeSet.add("BBB");
+        treeSet.add("BB");
+        treeSet.add("CCC");
+        treeSet.add("CC");
     }
 
-    // Метод для добавления элементов в TreeSet
-    public void addElements(int[] elements) {
-        for (int element : elements) {
-            treeSet.add(element);
+    // Метод для поиска элемента в TreeSet (с использованием цикла for)
+    public boolean findElement(String element) {
+        for (String elem : treeSet) {
+            if (elem.equals(element)) {
+                return true;
+            }
         }
+        return false;
     }
 
-    // Метод для удаления элемента из TreeSet
-    public void removeElement(int element) {
-        treeSet.remove(element);
+    // Метод для удаления элемента из TreeSet (с использованием цикла while)
+    public boolean removeElement(String element) {
+        boolean removed = false;
+        while (treeSet.remove(element)) {
+            removed = true;
+        }
+        return removed;
     }
 
-    // Метод для поиска элемента в TreeSet
-    public boolean searchElement(int element) {
-        return treeSet.contains(element);
+    // Метод для подсчета общего количества элементов в TreeSet
+    public int countElements() {
+        return treeSet.size();
     }
 
-    // Метод для вывода всех элементов TreeSet
+    // Метод для вывода всех элементов TreeSet (для тестирования, с использованием цикла for-each)
     public void printElements() {
-        Iterator<Integer> iterator = treeSet.iterator();
-        while (iterator.hasNext()) {
-            System.out.print(iterator.next() + " ");
+        System.out.println("Elements in TreeSet:");
+        for (String element : treeSet) {
+            System.out.println(element);
         }
-        System.out.println();
-    }
-
-    // Метод для выполнения действий добавления, удаления и поиска
-    public void executeActions() {
-        TreeSetExample example = new TreeSetExample();
-        example.executeActions();
-        // Добавление элементов
-        int[] elementsToAdd = {10, 20, 30, 40, 50};
-        addElements(elementsToAdd);
-        System.out.print("После добавления элементов: ");
-        printElements();
-
-        // Удаление элемента
-        removeElement(30);
-        System.out.print("После удаления элемента 30: ");
-        printElements();
-
-        // Поиск элемента
-        int elementToSearch = 20;
-        boolean found = searchElement(elementToSearch);
-        System.out.println("Элемент " + elementToSearch + " найден: " + found);
-
-        // Проверка отсутствующего элемента
-        elementToSearch = 30;
-        found = searchElement(elementToSearch);
-        System.out.println("Элемент " + elementToSearch + " найден: " + found);
     }
 }
