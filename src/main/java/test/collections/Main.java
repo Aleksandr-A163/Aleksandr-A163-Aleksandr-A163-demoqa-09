@@ -6,23 +6,21 @@ import java.util.List;
 public class Main {
     private List<String> list = new ArrayList<>();
 
-    // Добавление 5 элементов
-    public void addElements(String element1, String element2, String element3, String element4, String element5) {
-        list.add(element1);
-        list.add(element2);
-        list.add(element3);
-        list.add(element4);
-        list.add(element5);
+    // Метод для добавления элементов
+    public void addElements(String... elements) {
+        for (String element : elements) {
+            list.add(element);
+        }
     }
 
-    // Удаление элемента по индексу
+    // Метод для удаления элемента по индексу
     public void removeElementByIndex(int index) {
         if (index >= 0 && index < list.size()) {
             list.remove(index);
         }
     }
 
-    // Поиск элемента
+    // Метод для поиска элемента
     public boolean findElement(String element) {
         for (String item : list) {
             if (item.equals(element)) {
@@ -32,7 +30,7 @@ public class Main {
         return false;
     }
 
-    // Печать всех элементов
+    // Метод для печати всех элементов
     public void printElements() {
         for (String item : list) {
             System.out.println(item);
@@ -41,21 +39,23 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
+
+        // Добавление элементов
         main.addElements("January", "February", "March", "April", "May");
         main.printElements();
 
+        // Поиск элемента
         System.out.println(main.findElement("March")); // true
 
-        int removeIndex = 2; // индекс элемента "March"
-        main.removeElementByIndex(removeIndex);
-        main.printElements();
+        // Удаление элемента по индексу
+        removeElement(main, 2); // индекс элемента "March"
+        removeElement(main, 0); // индекс элемента "January"
+        removeElement(main, 3); // неверный индекс (вне диапазона)
+    }
 
-        int removeIndex2 = 0; // индекс элемента "January"
-        main.removeElementByIndex(removeIndex2);
-        main.printElements();
-
-        int removeIndex3 = 3; // неверный индекс (вне диапазона)
-        main.removeElementByIndex(removeIndex3);
+    // Вспомогательный метод для удаления элемента и печати оставшихся элементов
+    private static void removeElement(Main main, int index) {
+        main.removeElementByIndex(index);
         main.printElements();
     }
 }

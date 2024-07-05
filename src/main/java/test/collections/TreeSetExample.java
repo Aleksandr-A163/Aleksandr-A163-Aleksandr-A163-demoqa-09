@@ -37,28 +37,29 @@ public class TreeSetExample {
         System.out.println();
     }
 
-    public static void main(String[] args) {
+    // Метод для выполнения действий добавления, удаления и поиска
+    public void executeActions() {
         TreeSetExample example = new TreeSetExample();
-
+        example.executeActions();
         // Добавление элементов
         int[] elementsToAdd = {10, 20, 30, 40, 50};
-        example.addElements(elementsToAdd);
+        addElements(elementsToAdd);
         System.out.print("После добавления элементов: ");
-        example.printElements();
+        printElements();
 
         // Удаление элемента
-        example.removeElement(30);
+        removeElement(30);
         System.out.print("После удаления элемента 30: ");
-        example.printElements();
+        printElements();
 
         // Поиск элемента
         int elementToSearch = 20;
-        boolean found = example.searchElement(elementToSearch);
+        boolean found = searchElement(elementToSearch);
         System.out.println("Элемент " + elementToSearch + " найден: " + found);
 
         // Проверка отсутствующего элемента
         elementToSearch = 30;
-        found = example.searchElement(elementToSearch);
+        found = searchElement(elementToSearch);
         System.out.println("Элемент " + elementToSearch + " найден: " + found);
     }
 }

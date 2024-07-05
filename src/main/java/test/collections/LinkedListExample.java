@@ -4,30 +4,70 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class LinkedListExample {
+    private LinkedList<Integer> numbers;
+
     public static void main(String[] args) {
-        LinkedList<Integer> numbers = new LinkedList<>();
+        LinkedListExample example = new LinkedListExample();
+        example.executeActions();
+    }
 
-        // Добавление элементов в список
-        numbers.add(10);
-        numbers.add(20);
-        numbers.add(30);
+    public LinkedListExample() {
+        numbers = new LinkedList<>();
+    }
 
-        // Итератор для перебора элементов списка
+    // Метод для добавления элементов в список
+    public void addElements(int... elements) {
+        for (int element : elements) {
+            numbers.add(element);
+        }
+    }
+
+    // Метод для удаления элементов из списка
+    public void removeElements(int threshold) {
         ListIterator<Integer> iterator = numbers.listIterator();
-
-        // Удаление элементов из списка, используя цикл do-while
-        System.out.println("Удаление элементов из LinkedList:");
-        do {
+        while (iterator.hasNext()) {
             int num = iterator.next();
-            if (num > 15) {
+            if (num > threshold) {
                 iterator.remove();
             }
-        } while (iterator.hasNext());
+        }
+    }
 
-        // Вывод оставшихся элементов списка
-        System.out.println("Оставшиеся элементы:");
+    // Метод для поиска элемента в списке
+    public boolean searchElement(int element) {
+        return numbers.contains(element);
+    }
+
+    // Метод для вывода всех элементов списка
+    public void printElements() {
         for (int number : numbers) {
             System.out.println(number);
         }
     }
+
+    // Метод для выполнения действий добавления, удаления и поиска
+    public void executeActions() {
+        // Добавление элементов
+        addElements(10, 20, 30);
+        System.out.println("После добавления элементов:");
+        printElements();
+
+        // Удаление элементов
+        System.out.println("Удаление элементов из LinkedList:");
+        removeElements(15);
+        System.out.println("Оставшиеся элементы:");
+        printElements();
+
+        // Поиск элемента
+        int elementToSearch = 20;
+        boolean found = searchElement(elementToSearch);
+        System.out.println("Элемент " + elementToSearch + " найден: " + found);
+
+        // Проверка отсутствующего элемента
+        elementToSearch = 10;
+        found = searchElement(elementToSearch);
+        System.out.println("Элемент " + elementToSearch + " найден: " + found);
+    }
+
+
 }

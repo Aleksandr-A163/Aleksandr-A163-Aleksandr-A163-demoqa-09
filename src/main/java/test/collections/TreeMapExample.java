@@ -8,28 +8,45 @@ public class TreeMapExample {
         TreeMap<String, Integer> treeMap = new TreeMap<>();
 
         // Добавление элементов в TreeMap
-        treeMap.put("One", 1);
-        treeMap.put("Two", 2);
-        treeMap.put("Three", 3);
+        addElements(treeMap);
 
-        // Удаление элемента "Two" из TreeMap с использованием цикла while
+        // Удаление элемента "Two" из TreeMap
         String keyToRemove = "Two";
-        Map.Entry<String, Integer> entry = treeMap.firstEntry();
+        removeElement(treeMap, keyToRemove);
 
-        // Цикл while для удаления элемента
-        while (entry != null) {
+        // Поиск элемента "Three" в TreeMap
+        String keyToFind = "Three";
+        findElement(treeMap, keyToFind);
+    }
+
+    // Метод для добавления элементов в TreeMap
+    private static void addElements(TreeMap<String, Integer> treeMap) {
+        String[] keys = {"One", "Two", "Three"};
+        int[] values = {1, 2, 3};
+
+        for (int i = 0; i < keys.length; i++) {
+            treeMap.put(keys[i], values[i]);
+        }
+    }
+
+    // Метод для удаления элемента из TreeMap
+    private static void removeElement(TreeMap<String, Integer> treeMap, String keyToRemove) {
+        for (Map.Entry<String, Integer> entry : treeMap.entrySet()) {
             if (entry.getKey().equals(keyToRemove)) {
                 System.out.println("Удаление элемента '" + keyToRemove + "'. Значение: " + entry.getValue());
                 treeMap.remove(entry.getKey());
                 break;
             }
-            entry = treeMap.higherEntry(entry.getKey());
         }
+    }
 
-        // Печать оставшихся элементов TreeMap
-        System.out.println("Оставшиеся элементы TreeMap после удаления:");
-        for (Map.Entry<String, Integer> remainingEntry : treeMap.entrySet()) {
-            System.out.println("Key: " + remainingEntry.getKey() + ", Value: " + remainingEntry.getValue());
+    // Метод для поиска элемента в TreeMap
+    private static void findElement(TreeMap<String, Integer> treeMap, String keyToFind) {
+        Integer value = treeMap.get(keyToFind);
+        if (value != null) {
+            System.out.println("Элемент найден: Key: " + keyToFind + ", Value: " + value);
+        } else {
+            System.out.println("Элемент с ключом '" + keyToFind + "' не найден.");
         }
     }
 }
