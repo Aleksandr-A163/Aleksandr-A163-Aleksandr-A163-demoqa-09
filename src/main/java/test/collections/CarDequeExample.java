@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 public class CarDequeExample {
 
-    CarDequeExample example = new CarDequeExample();
     private Deque<String> carDeque;
 
 

@@ -59,28 +59,4 @@ public class HashMapExample {
         }
     }
 
-    // Метод для выполнения всех действий
-    public void executeActions() {
-        // Добавление объектов
-        addPerson(1, new Person("Alice", 30));
-        addPerson(2, new Person("Bob", 25));
-        addPerson(3, new Person("Charlie", 35));
-
-        // Печать всех объектов
-        printAllPeople();
-
-        // Поиск объекта по ключу
-        searchPerson(2);
-
-        // Удаление объекта
-        removePerson(1);
-
-        // Печать всех объектов после удаления
-        printAllPeople();
-    }
-
-    public static void main(String[] args) {
-        HashMapExample example = new HashMapExample();
-        example.executeActions();
-    }
 }
